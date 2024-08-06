@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Post, Body } from '@nestjs/common';
 
 @Controller('products')
 export class ProductsController {
@@ -6,4 +6,11 @@ export class ProductsController {
     getAllProducts(){
         return 'This action returns all products.';
     }
+
+
+    @Post()
+    addProduct(@Body() product) {
+        return product;
+    }
+
 }
