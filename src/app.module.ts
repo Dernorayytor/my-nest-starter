@@ -8,3 +8,5 @@ import { AppService } from './app.service';
   providers: [AppService],
 })
 export class AppModule {}
+
+//ตัวโมลดูล ที่รวมทั้ง Controller และ Service
