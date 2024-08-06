@@ -4,7 +4,7 @@ import { Controller, Get, Post, Body } from '@nestjs/common';
 export class ProductsController {
     @Get()
     getAllProducts(){
-        return 'This action returns all products.';
+        return 'product';
     }
 
 
