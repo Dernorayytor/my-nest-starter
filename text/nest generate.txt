@@ -1,0 +1,10 @@
+nest generate
+การสร้างไฟล์ต่างๆเช่นสร้าง service โดยสร้างผ่าน CLI ไม่ต้องมาคอยสร้างแบบแมนนวล โดยจะให้มันเจนออกมาแล้ว CLI จะจัดการในส่วนของการ import ของต่างๆภายในไฟล์นั้นๆให้
+# สร้าง Controller
+nest generate controller <name>
+
+# สร้าง Service
+nest generate service <name>
+
+# สร้าง Module
+nest generate module <name>
