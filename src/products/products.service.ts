@@ -9,5 +9,9 @@ export class ProductsService {
     findAll() {
         return this.products;
     }
+    create(product) {
+        this.products.push(product);
+        return this.products;
+    }
 }
 
