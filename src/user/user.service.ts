@@ -23,11 +23,16 @@ export class UserService {
     return this.userModel.findById(id).exec();
   }
 
-  update(id: string, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
+  async update(id: string, updateUserDto: UpdateUserDto): Promise<User> {
+    const result = this.userModel.findByIdAndUpdate(
+      id,updateUserDto,{new: true}
+    ).exec();
+    return result;
   }
 
   remove(id: string) {
     return `This action removes a #${id} user`;
   }
 }
+//new: true ใส่เพื่อบ่งบอกว่าเอาค่าใหม่หลังอัพเดทให้ด้วย
+//exec() เป็นอะไรที่ต้องใส่ async และ Promise<xxx>
