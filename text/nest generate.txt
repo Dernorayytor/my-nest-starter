@@ -8,3 +8,6 @@ nest generate service <name>
 
 # สร้าง Module
 nest generate module <name>
+
+# resource สร้างทุกอย่าง
+nest g resource <name>
