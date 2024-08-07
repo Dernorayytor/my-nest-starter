@@ -4,6 +4,7 @@ import { Model } from 'mongoose';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User, UserDocument } from './schemas/user.schemas';
+import { error } from 'console';
 
 @Injectable()
 export class UserService {
@@ -31,8 +32,15 @@ export class UserService {
   }
 
   async remove(id: string) {
-    const result = await this.userModel.findByIdAndDelete(id).exec();
-    return `This action remove a #${id} user`;
+    try {
+      const result = await this.userModel.findByIdAndDelete(id).exec();
+      if (!result) {
+        return { message: 'id not found' };
+      }
+      return { message: 'User deleted successfully' };
+    } catch (error) {
+      return { error };
+    }
   }
 }
 //new: true ใส่เพื่อบ่งบอกว่าเอาค่าใหม่หลังอัพเดทให้ด้วย
