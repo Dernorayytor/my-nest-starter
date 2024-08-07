@@ -10,9 +10,10 @@ export class UserService {
   constructor(
     @InjectModel(User.name) private userModel: Model<UserDocument>,
   ) {}
-  create(createUserDto: CreateUserDto) {
-    return 'This action adds a new user';
-  }
+  async create(createUserDto: CreateUserDto): Promise<User> {
+    const result = new this.userModel(createUserDto)
+    return result.save();
+  } //อันไหนที่ async และมี Promise<xxx> nestjs จะทำการแฮนเดิลออโต้
 
   findAll() {
     return `This action returns all user`;
