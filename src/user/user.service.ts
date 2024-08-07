@@ -15,8 +15,8 @@ export class UserService {
     return result.save();
   } //อันไหนที่ async และมี Promise<xxx> nestjs จะทำการแฮนเดิลออโต้
 
-  findAll() {
-    return `This action returns all user`;
+  async findAll(): Promise<User[]> {
+    return this.userModel.find().exec();
   }
 
   findOne(id: string) {
