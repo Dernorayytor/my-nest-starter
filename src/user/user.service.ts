@@ -32,16 +32,12 @@ export class UserService {
   }
 
   async remove(id: string) {
-    try {
       const result = await this.userModel.findByIdAndDelete(id).exec();
       if (!result) {
         throw new NotFoundException('id not found');
       }
       return { message: 'User deleted successfully' };
-    } catch (error) {
-      throw error;
-    }
-  }
+  }//ย่อโค้ดไม่ต้องใช้ try catch ก็ได้
 }
 //new: true ใส่เพื่อบ่งบอกว่าเอาค่าใหม่หลังอัพเดทให้ด้วย
 //exec() เป็นอะไรที่ต้องใส่ async และ Promise<xxx>
