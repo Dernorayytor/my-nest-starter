@@ -1,4 +1,4 @@
-import { Injectable, Delete } from '@nestjs/common';
+import { Injectable, Delete , NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -14,7 +14,7 @@ export class UserService {
   async create(createUserDto: CreateUserDto): Promise<User> {
     const result = new this.userModel(createUserDto)
     return result.save();
-  } //อันไหนที่ async และมี Promise<xxx> nestjs จะทำการแฮนเดิลออโต้
+  }
 
   async findAll(): Promise<User[]> {
     return this.userModel.find().exec();
@@ -35,13 +35,14 @@ export class UserService {
     try {
       const result = await this.userModel.findByIdAndDelete(id).exec();
       if (!result) {
-        return { message: 'id not found' };
+        throw new NotFoundException('id not found');
       }
       return { message: 'User deleted successfully' };
     } catch (error) {
-      return { error };
+      throw error;
     }
   }
 }
 //new: true ใส่เพื่อบ่งบอกว่าเอาค่าใหม่หลังอัพเดทให้ด้วย
 //exec() เป็นอะไรที่ต้องใส่ async และ Promise<xxx>
+//อันไหนที่ async และมี Promise<xxx> nestjs จะทำการแฮนเดิลออโต้
