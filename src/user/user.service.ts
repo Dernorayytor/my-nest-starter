@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Delete } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -30,8 +30,9 @@ export class UserService {
     return result;
   }
 
-  remove(id: string) {
-    return `This action removes a #${id} user`;
+  async remove(id: string) {
+    const result = await this.userModel.findByIdAndDelete(id).exec();
+    return `This action remove a #${id} user`;
   }
 }
 //new: true ใส่เพื่อบ่งบอกว่าเอาค่าใหม่หลังอัพเดทให้ด้วย
