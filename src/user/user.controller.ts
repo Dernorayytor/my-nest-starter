@@ -22,7 +22,7 @@ export class UserController {
     return this.userService.findOne(id);
   }
 
-  @Patch(':id')
+  @Patch(':id') //แล้วแต่หลายที่บางทีก็ใช้ put หรือ patch
   update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
     return this.userService.update(id, updateUserDto);
   }
