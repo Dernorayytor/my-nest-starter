@@ -5,17 +5,12 @@ export type OrderDocument = Order & Document;
 
 @Schema()
 export class Order {
-  @Prop({ type: Types.ObjectId, ref: 'Order', required: true })
-  name: Types.ObjectId;
-
-  @Prop()
-  age: number;
+  @Prop({ type: Types.ObjectId, ref: 'User', required: true })
+  productId: Types.ObjectId;
 
   @Prop({ required: true })
-  email: string;
+  quantity: number;
 
-  @Prop({ required: true })
-  password: string;
 }
 
 export const OrderSchema = SchemaFactory.createForClass(Order);
